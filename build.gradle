@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.app'
-version = '0.0.1-SNAPSHOT'
+version = '1'
 
 java {
     toolchain {
@@ -25,4 +25,14 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+bootRun {
+    String activeProfile = System.properties['spring.profiles.active']
+    systemProperty("spring.profiles.active", activeProfile)
+}
+bootJar{
+    archiveBaseName = 'App'
+    archiveFileName = 'app.jar'
+    archiveVersion = '1'
 }
